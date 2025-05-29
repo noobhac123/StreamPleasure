@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthPlus - Your Wellness Journey Starts Here</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2E7D32;
+            --accent-color: #8BC34A;
+            --light-color: #F1F8E9;
+            --dark-color: #1B5E20;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: var(--light-color);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: white;
+            color: var(--dark-color);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .features-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .testimonials-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            display: none;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .testimonial.active {
+            display: block;
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .dot.active {
+            background-color: white;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+            }
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Age Verification Overlay */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+        
+        #confirmation-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: popIn 0.5s;
+        }
+        
+        @keyframes popIn {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        #confirmation-message {
+            margin-bottom: 30px;
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            line-height: 1.5;
+        }
+        
+        .confirmation-button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0 10px;
+            border: none;
+            border-radius: 50px;
+            background-color: var(--primary-color);
+            color: #fff;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .confirmation-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .confirmation-button.no {
+            background-color: #f44336;
+        }
+        
+        .confirmation-button.no:hover {
+            background-color: #d32f2f;
+        }
+        
+        .verification-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Ad Container Styling */
+        .ad-container {
+            margin: 40px auto;
+            padding: 10px 0;
+            text-align: center;
+            max-width: 100%;
+        }
+
+        .ad-container-300x250, .ad-container-320x50, .ad-container-native {
+             min-height: 50px; 
+        }
+        .ad-container-300x250 {
+            min-height: 250px;
+        }
+         #container-8b8fefda6118ed43b17d582ece2047ad { 
+            margin: 20px auto; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Age Verification Overlay -->
+    <div id="overlay"></div>
+    <div id="confirmation-container">
+        <div class="verification-icon">🔞</div>
+        <p id="confirmation-message">This website contains health information intended for adults only. By entering, you confirm you are 18 years or older.</p>
+        <button class="confirmation-button" onclick="handleConfirmation(true)">I'm 18 or Older</button>
+        <button class="confirmation-button no" onclick="handleConfirmation(false)">I'm Under 18</button>
+    </div>
+
+    <!-- Main Landing Page Content -->
+    <div class="hero-section animate__animated animate__fadeIn">
+        <div class="floating-elements">
+            <div class="floating-element" style="width: 100px; height: 100px; top: 20%; left: 10%;"></div>
+            <div class="floating-element" style="width: 150px; height: 150px; top: 70%; left: 80%;"></div>
+            <div class="floating-element" style="width: 60px; height: 60px; top: 40%; left: 60%;"></div>
+            <div class="floating-element" style="width: 80px; height: 80px; top: 80%; left: 30%;"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">Transform Your Health Journey</h1>
+            <p class="tagline animate__animated animate__fadeIn animate__delay-1s">Personalized wellness solutions for a better, healthier you</p>
+            <!-- MODIFIED URL FOR "Discover How" BUTTON -->
+            <a href="https://maintaintournamentslick.com/i3vaa3040?key=123fa68453ecc35a786eb70981bf0911" class="cta-button animate__animated animate__fadeInUp animate__delay-2s">Discover How</a>
+        </div>
+    </div>
+
+    <section class="features-section" id="features">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature-card animate__animated animate__fadeInUp">
+                <div class="feature-icon">💊</div>
+                <h3 class="feature-title">Expert Guidance</h3>
+                <p>Our team of certified health professionals provides personalized advice tailored to your unique needs.</p>
+            </div>
+            <div class="feature-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Digital Health Tools</h3>
+                <p>Access cutting-edge health tracking and monitoring tools right from your smartphone.</p>
+            </div>
+            <div class="feature-card animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="feature-icon">❤️</div>
+                <h3 class="feature-title">Holistic Approach</h3>
+                <p>We address all aspects of wellness - physical, mental, and emotional health.</p>
+            </div>
+        </div>
+
+        <!-- Adsterra 300x250 Ad -->
+        <div class="ad-container ad-container-300x250">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '1f67b437b1ee81e8df0ac66b1e31dc05',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//maintaintournamentslick.com/1f67b437b1ee81e8df0ac66b1e31dc05/invoke.js"></script>
+        </div>
+    </section>
+
+    <!-- Adsterra Native Banner Ad -->
+    <div class="ad-container ad-container-native">
+        <script async="async" data-cfasync="false" src="//maintaintournamentslick.com/8b8fefda6118ed43b17d582ece2047ad/invoke.js"></script>
+        <div id="container-8b8fefda6118ed43b17d582ece2047ad"></div>
+    </div>
+
+    <section class="testimonials-section">
+        <h2 class="section-title" style="color: white;">Success Stories</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial active">
+                <p class="testimonial-text">"After struggling with my health for years, this program completely transformed my life. I've never felt better!"</p>
+                <p class="testimonial-author">- Sarah J., 42</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"The personalized approach made all the difference. I finally found solutions that work for my specific needs."</p>
+                <p class="testimonial-author">- Michael T., 35</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"Easy to follow, science-backed advice that actually works. I recommend this to all my friends and family."</p>
+                <p class="testimonial-author">- Priya K., 28</p>
+            </div>
+            <div class="dots-container">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adsterra 320x50 Ad -->
+    <div class="ad-container ad-container-320x50">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '8e0a6bf059e073322a0a05ab77b0fc2a',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//maintaintournamentslick.com/8e0a6bf059e073322a0a05ab77b0fc2a/invoke.js"></script>
+    </div>
+
+    <footer>
+        <p>© 2023 HealthPlus Wellness Solutions. All rights reserved.</p>
+        <p>This content is intended for adults 18 years and older. Please consult with a healthcare professional before starting any new health regimen.</p>
+    </footer>
+
+    <!-- Adsterra Social Bar Ad -->
+    <script type='text/javascript' src='//maintaintournamentslick.com/6c/65/f8/6c65f80c331486454a9a872873c726e7.js'></script>
+
+    <script>
+        // Show age verification on page load
+        window.onload = function() {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("confirmation-container").style.display = "block";
+        };
+
+        function handleConfirmation(isAdult) {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("confirmation-container").style.display = "none";
+
+            if (!isAdult) {
+                // Create and append the popunder script to trigger it
+                var popunderScriptTag = document.createElement('script');
+                popunderScriptTag.type = 'text/javascript';
+                popunderScriptTag.src = '//maintaintournamentslick.com/5c/5a/2a/5c5a2acbec5becf4504d0b7b479aa8db.js'; // Popunder script
+                document.body.appendChild(popunderScriptTag);
+                // NO REDIRECTION of the main window
+            }
+            // If yes (isAdult is true), they can continue viewing the page (ads will be visible)
+        }
+
+        // Testimonial slider functionality
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("testimonial");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (slides.length === 0 || dots.length === 0) return; 
+
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            
+            for (i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            slides[slideIndex-1].classList.add("active");
+            dots[slideIndex-1].classList.add("active");
+        }
+
+        // Auto-rotate testimonials
+        let testimonialInterval = setInterval(function() {
+            let slides = document.getElementsByClassName("testimonial");
+            if (slides.length > 0) { 
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                showSlides(slideIndex);
+            }
+        }, 5000);
+
+        // Create floating elements dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingContainer = document.querySelector('.floating-elements');
+            if (floatingContainer) { 
+                for (let i = 0; i < 10; i++) { 
+                    const size = Math.random() * 60 + 40;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const duration = Math.random() * 10 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    element.style.width = `${size}px`;
+                    element.style.height = `${size}px`;
+                    element.style.top = `${posY}%`;
+                    element.style.left = `${posX}%`;
+                    element.style.animationDuration = `${duration}s`;
+                    element.style.animationDelay = `${delay}s`;
+                    
+                    floatingContainer.appendChild(element);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
